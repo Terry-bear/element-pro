@@ -87,9 +87,6 @@
 </template>
 
 <script>
-// import { fetchList, getObj, addObj, putObj, delObj } from '@/api/user';
-// import { deptRoleList, fetchDeptTree } from '@/api/role';
-// import { parseTime } from '@/utils'
 import { mapGetters } from 'vuex'
 import ElRadioGroup from 'element-ui/packages/radio/src/radio-group'
 import ElOption from 'element-ui/packages/select/src/option'
