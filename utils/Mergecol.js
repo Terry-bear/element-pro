@@ -16,6 +16,7 @@ export default class Mergercol {
     let packObj
     let packList = []
     let overObj = false
+    if (this.list.length < 2) return this.list
     this.list.map(obj => {
       switch (args) {
         case 'companyName':
