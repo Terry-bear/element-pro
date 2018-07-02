@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
+	<body>
+	    <div id="myVue">
+	        <el-row>
+	            <el-col :span="16" :offset="4">
+	                <el-input v-model="search" placeholder="请输入内容"></el-input>
+                    <div class="tableRef" id="tableRef" ref="tableRef">
+                        <el-table
+                            :data="tables"
+                            style="width: 100%">
+                            <el-table-column
+                                label="日期"
+                                width="180">
+                                <template slot-scope="scope">
+                                    <span class="col-cont" v-html="showDate(scope.row.date)" ></span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column
+                                label="姓名"
+                                width="180">
+                                <template slot-scope="scope">
+                                    <span class="col-cont" v-html="showDate(scope.row.name)" ></span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column
+                                label="地址">
+                                <template slot-scope="scope">
+                                    <span class="col-cont" v-html="showDate(scope.row.address)" ></span>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </div>
+	            </el-col>
+	        </el-row>
+	    </div>
+        <script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript">
+            new Vue({
+                el: '#myVue',
+                data: {
+                    search: '',
+                    tableData: [{
+                        date: '2015-05-02',
+                        name: '王小虎',
+                        address: '上海市普陀区金沙江路 1518 弄'
+                    }, {
+                        date: '2017-05-04',
+                        name: '无浩然',
+                        address: '上海市普陀区金沙江路 1517 弄'
+                    }, {
+                        date: '2017-05-04',
+                        name: '吴浩然',
+                        address: '上海市普陀区金沙江路 1517 弄'
+                    }, {
+                        date: '2018-05-01',
+                        name: '小狮子',
+                        address: '上海市普陀区金沙江路 1519 弄'
+                    }, {
+                        date: '2019-05-03',
+                        name: '大城西',
+                        address: '上海市普陀区金沙江路 1516 弄'
+                    }]
+                },
+                computed: {
+                    tables: function () {
+                        const search = this.search
+                        if (search) {
+                            return this.tableData.filter(dataNews => {
+                                return Object.keys(dataNews).some(key => {
+                                    return String(dataNews[key]).toLowerCase().indexOf(search) > -1
+                                })
+                            })
+                        }
+                        return this.tableData
+                    }
+                },
+                methods: {
+                    showDate (val) {
+                        if (val.indexOf(this.search) !== -1 && this.search !== '') {
+                            return val.replace(this.search, '<font color="#409EFF">' + this.search + '</font>')
+                        } else {
+                            return val
+                        }
+                    }
+                }
+            })
+        </script>
+	</body>
+</html>
